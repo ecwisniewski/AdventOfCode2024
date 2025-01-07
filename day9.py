@@ -10,11 +10,10 @@ def id_space_allocation(input):
     space = []
     alloc = []
     blocks=0
+    print(len(input))
     if len(input) % 2:
         input += '0'
-        #print(input)
     for i in range(0,len(input)):
-        #space.append(count)
         if i % 2 == 0:
             for j in range(0,int(input[i])):
                 alloc.append(str(id))
@@ -24,7 +23,7 @@ def id_space_allocation(input):
                 alloc.append('.')
             free = input[i]
             id += 1
-            space.append({"blocks":blocks,"free":free,"visual":alloc})
+            space.append({"id": id-1, "blocks":int(blocks),"free":int(free),"visual":alloc})
             alloc = []
 
     return space
@@ -43,26 +42,19 @@ def move_backwards_free_space(input):
 
 
 def move_backwards_exact_free_space(input):
-    #reversed_input =
     for i in reversed(input):
-        blocks = int(i["blocks"])
-        for j in input:
-            free = int(j["free"])
-            #print(f'Free/Blocks check: {free >= blocks}')
+        blocks = i["blocks"]
+        for j in input[0:i["id"]+1]:
+            free = j["free"]
             if free >= blocks:
                 for k in range(0,len(j["visual"])):
+
                     if j["visual"][k] != ".":
                         continue
                     else:
                         j["visual"][k:k+blocks] = i["visual"][0:blocks]
-                        j["free"] = str(free - blocks)
-                        #j["blocks"] = str(int(j["blocks"])+blocks)
+                        j["free"] = free - blocks
                         i["visual"][0:blocks] = ['.']*blocks
-
-                        print(i["blocks"])
-                        print(blocks)
-                        #i["blocks"] = str(int(i["blocks"]) -blocks)
-                        #print(input)
                         break
                 break
 
@@ -89,12 +81,14 @@ def turn_big_list(allocation):
     return big_list
 
 #calculate_final_checksum(move_backwards_free_space(id_space_allocation(get_input())))
-allocation = id_space_allocation(test)
+allocation = id_space_allocation(get_input())
+#print(allocation)
 #print(allocation)
 
 #big_list = turn_big_list(allocation)
 #calculate_final_checksum(move_backwards_free_space(turn_big_list(allocation)))
 
 move_backwards_exact_free_space(allocation)
-print(allocation)
+#print(allocation)
+print(turn_big_list(allocation))
 calculate_final_checksum(turn_big_list(allocation))
