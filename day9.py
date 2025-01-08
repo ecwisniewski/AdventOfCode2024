@@ -58,8 +58,6 @@ def move_backwards_exact_free_space(input):
                         break
                 break
 
-    #print(input)
-
 
 
 
