@@ -1,5 +1,3 @@
-# Directions: up, down, left, right
-directions = [0,1,2,3]
 count = 0
 hit_summits = []
 
