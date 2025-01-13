@@ -1,6 +1,8 @@
 # To practice understanding of linked lists I'm
 # going to make a linked list to hold onto the stones
 #
+# Pretty obvious this doesn't work at the larger values
+# and is not the most optimized way to do this.
 class Node:
     def __init__(self,value):
         self.value = value
@@ -141,31 +143,3 @@ for _ in range(0,40):
     print(f'at {j} = {stones2.length}')
     j+=1
 print(stones2.length)
-
-stones4 = stones2.split_stones()
-stones3 = stones2.split_stones()
-stones5 = stones4.split_stones()
-y = j
-for _ in range(0,35):
-    stones2.blink()
-    print(f'at {j} = {stones2.length}')
-    j+=1
-print(stones2.length)
-j=y
-for _ in range(0,35):
-    stones3.blink()
-    print(f'at {j} = {stones3.length}')
-    j+=1
-print(stones3.length)
-j=y
-for _ in range(0,35):
-    stones4.blink()
-    print(f'at {j} = {stones4.length}')
-    j+=1
-print(stones4.length)
-j=y
-for _ in range(0,35):
-    stones5.blink()
-    print(f'at {j} = {stones5.length}')
-    j+=1
-print(stones5.length)
